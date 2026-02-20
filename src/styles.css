@@ -24,11 +24,11 @@ html, body {
   --secondary-600: #0d9488;
   --secondary-700: #0f766e;
 
-  --accent-50: #faf5ff;
-  --accent-100: #f3e8ff;
-  --accent-400: #c084fc;
-  --accent-500: #8b5cf6;
-  --accent-600: #7c3aed;
+  --accent-50: #f0fdfa;
+  --accent-100: #ccfbf1;
+  --accent-400: #2dd4bf;
+  --accent-500: #14b8a6;
+  --accent-600: #0d9488;
 
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
@@ -48,7 +48,7 @@ html, body {
 
   --gradient-primary: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
   --gradient-secondary: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  --gradient-accent: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
   
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);

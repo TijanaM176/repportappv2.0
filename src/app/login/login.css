@@ -31,7 +31,7 @@
 .bg-shape-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #8b5cf6, transparent 70%);
+  background: radial-gradient(circle, #14b8a6, transparent 70%);
   top: -200px;
   right: -150px;
   animation: float 8s ease-in-out infinite;
