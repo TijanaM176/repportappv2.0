@@ -1,0 +1,13 @@
+{
+    "reportOptions":[
+        { "name": "Production Report", "value": 1, "selectedValue": false},
+        { "name": "Packaging Station Report", "value": 2, "selectedValue": false},
+        { "name": "Manufactured Parts Report", "value":3, "selectedValue": false},
+        { "name": "Rework Report", "value":4, "selectedValue": false},
+        { "name": "Scrap Report", "value":5, "selectedValue": false},
+        { "name": "Employee Efficiency Report", "value":6, "selectedValue": false},
+        { "name": "IMM Report", "value":9, "selectedValue": false},
+        { "name": "Cutting PVC Report", "value":10, "selectedValue": false},
+        { "name": "Cutting RL Report", "value":11, "selectedValue": false}
+    ]
+}
