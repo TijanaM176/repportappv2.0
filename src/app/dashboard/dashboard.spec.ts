@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScrapzonesReport } from './scrapzones-report';
+import { Dashboard } from './dashboard';
 
-describe('ScrapzonesReport', () => {
-  let component: ScrapzonesReport;
-  let fixture: ComponentFixture<ScrapzonesReport>;
+describe('Dashboard', () => {
+  let component: Dashboard;
+  let fixture: ComponentFixture<Dashboard>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ScrapzonesReport]
+      imports: [Dashboard]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ScrapzonesReport);
+    fixture = TestBed.createComponent(Dashboard);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,3 +6,25 @@ body
     margin: 0;
     padding: 0;
 }
+
+:root {
+    --menu-primary-700: #2563eb;
+    --menu-primary-900: #1e3a8a;
+    --menu-secondary-600: #0d9488;
+    --menu-secondary-500: #14b8a6;
+    --menu-secondary-700: #0f766e;
+    --menu-text: #f8fafc;
+    --menu-text-muted: #dbeafe;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
