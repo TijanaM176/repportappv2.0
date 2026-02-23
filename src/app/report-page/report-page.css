@@ -49,6 +49,13 @@ gridster-item:active {
   justify-content: center;
   flex-direction: column;
   gap: 8px;
+  text-align: center;
+}
+
+.gridster-item-content h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1rem;
 }
 
 .gridster-item-content button {
