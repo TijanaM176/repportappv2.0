@@ -1,11 +1,31 @@
-<gridster [options]="options">
-	<gridster-item [item]="item" *ngFor="let item of dashboard">
-		<div class="gridster-item-content" 
-    (mousedown)="$event.stopPropagation()" 
-    (touchstart)="$event.stopPropagation()">
-			<button (click)="removeItem(item)">remove</button>
-		</div>
-	</gridster-item>
-</gridster>
+<div class="dashboard-layout" [style.margin-left]="sidebarMargin">
+  <app-side-menu (sidebarStateChanged)="onSidebarStateChanged($event)"></app-side-menu>
+  
+  <div class="dashboard-content">
+    <div class="dashboard-header">
+      <h1>Production Dashboard</h1>
+      <button class="btn-add-widget" (click)="addWidget()">+ Add Widget</button>
+    </div>
 
-<button (click)="addItem()">Add</button>
+    <div class="gridster-wrapper" *ngIf="widgets.length > 0">
+      <gridster [options]="options">
+        <gridster-item *ngFor="let widget of widgets" [item]="widget">
+          <div class="widget-container">
+            <button class="btn-widget-remove" (click)="removeWidget(widget)">✕</button>
+            
+            <app-widget-table *ngIf="widget.type === 'table'" [widget]="widget"></app-widget-table>
+            <app-widget-stats *ngIf="widget.type === 'stats'" [widget]="widget"></app-widget-stats>
+            <app-widget-chart *ngIf="widget.type === 'chart'" [widget]="widget"></app-widget-chart>
+          </div>
+        </gridster-item>
+      </gridster>
+    </div>
+
+    <div class="empty-state" *ngIf="widgets.length === 0">
+      <div class="empty-icon">📊</div>
+      <h2>No widgets selected</h2>
+      <p>Select a report from the sidebar to view dashboard widgets</p>
+      <button class="btn-add-widget-large" (click)="addWidget()">+ Add Widget</button>
+    </div>
+  </div>
+</div>

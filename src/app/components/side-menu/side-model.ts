@@ -15,9 +15,3 @@ export interface ProductionLine{
 export interface TimeOption {
     title: string;
 }
-export interface Station{
-    id:number,
-    stationName:string,
-    stationNumber:string,
-    productionLine:number
-}
