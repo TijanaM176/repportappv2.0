@@ -1,3 +1,27 @@
+<!-- Add Widget Modal -->
+<div class="modal-backdrop" *ngIf="showAddWidgetModal">
+  <div class="modal">
+    <h2>Add Widget</h2>
+    <label>Type:
+      <select [(ngModel)]="newWidgetType">
+        <option value="table">Table</option>
+        <option value="chart">Chart</option>
+        <option value="stats">Stats</option>
+      </select>
+    </label>
+    <label>Width (columns):
+      <select [(ngModel)]="newWidgetCols">
+        <option [value]="2">Small (2/4)</option>
+        <option [value]="3">Medium (3/4)</option>
+        <option [value]="4">Large (4/4)</option>
+      </select>
+    </label>
+    <div class="modal-actions">
+      <button (click)="confirmAddWidget()">Add</button>
+      <button (click)="cancelAddWidget()">Cancel</button>
+    </div>
+  </div>
+</div>
 <div class="dashboard-layout" [style.margin-left]="sidebarMargin">
   <app-side-menu (sidebarStateChanged)="onSidebarStateChanged($event)"></app-side-menu>
   

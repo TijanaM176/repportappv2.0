@@ -1,3 +1,9 @@
+/* Force scroll on PrimeNG CascadeSelect dropdown list (only the list, not the overlay or page) */
+.p-cascadeselect-list.p-cascadeselect-option-list.p-cascadeselect-overlay {
+  max-height: 300px;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+}
 
 html, body {
   margin: 0;

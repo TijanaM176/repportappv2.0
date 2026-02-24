@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { GridsterConfig, GridsterModule } from 'angular-gridster2';
 import { SideMenuComponent } from '../components/side-menu/side-menu.component';
 import { WidgetTableComponent } from '../widgets/widget-table/widget-table.component';
@@ -14,6 +15,7 @@ import { IWidget } from '../models/widget.model';
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     GridsterModule,
     SideMenuComponent,
     WidgetTableComponent,
@@ -24,6 +26,19 @@ import { IWidget } from '../models/widget.model';
   styleUrls: ['./dashboard.css'],
 })
 export class Dashboard implements OnInit {
+      fitContent() {
+        setTimeout(() => {
+          if (this.options?.api?.resize) {
+            this.options.api.resize();
+          }
+          if (this.options?.api?.optionsChanged) {
+            this.options.api.optionsChanged();
+          }
+        }, 0);
+      }
+    showAddWidgetModal = false;
+    newWidgetType: 'table' | 'chart' | 'stats' = 'table';
+    newWidgetCols: number = 2;
   options!: GridsterConfig;
   widgets: IWidget[] = [];
   sidebarMargin = '64px';
@@ -76,22 +91,35 @@ export class Dashboard implements OnInit {
     if (idx >= 0) {
       this.widgets.splice(idx, 1);
       this.updateGridOptions();
+      this.fitContent();
     }
   }
 
   addWidget() {
+    this.showAddWidgetModal = true;
+  }
+
+  confirmAddWidget() {
     const newWidget: IWidget = {
       id: 'widget-' + Date.now(),
       reportId: this.filterState.getSelectedReport() || '',
-      type: 'table',
+      type: this.newWidgetType,
       title: 'New Widget',
-      cols: 2,
+      cols: this.newWidgetCols,
       rows: 1,
       x: 0,
       y: this.widgets.length
     };
     this.widgets.push(newWidget);
     this.updateGridOptions();
+    this.fitContent();
+    this.showAddWidgetModal = false;
+    this.newWidgetType = 'table';
+    this.newWidgetCols = 2;
+  }
+
+  cancelAddWidget() {
+    this.showAddWidgetModal = false;
   }
 
   changedOptions() {
