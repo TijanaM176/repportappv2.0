@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PpsrChart } from './ppsr-chart';
+import { PprsService } from './pprs-service';
 
-describe('PpsrChart', () => {
-  let service: PpsrChart;
+describe('PprsService', () => {
+  let service: PprsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PpsrChart);
+    service = TestBed.inject(PprsService);
   });
 
   it('should be created', () => {
