@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GridsterConfig, GridsterModule } from 'angular-gridster2';
 import { SideMenuComponent } from '../components/side-menu/side-menu.component';
@@ -99,9 +99,9 @@ export class Dashboard implements OnInit {
     showAddWidgetModal = false;
     newWidgetType: 'table' | 'chart' | 'stats' | 'pps-chart' | 'pps-table' | 'pps-info' = 'table';
     newWidgetCols: number = 2;
-  options!: GridsterConfig;
-  widgets: IWidget[] = [];
-  sidebarMargin = '64px';
+    options!: GridsterConfig;
+    widgets: IWidget[] = [];
+    sidebarMargin = '64px';
 
 
   ngOnInit() {
@@ -184,6 +184,31 @@ export class Dashboard implements OnInit {
       default:
         widgetCols = 2; widgetRows = 1;
     }
+    // Find next available position
+    let maxCols = this.options.maxCols || 6;
+    let maxRows = this.options.maxRows || 4;
+    let found = false;
+    let x = 0, y = 0;
+    while (!found) {
+      const overlap = this.widgets.some(w =>
+        !(x + widgetCols <= w.x || x >= w.x + w.cols || y + widgetRows <= w.y || y >= w.y + w.rows)
+      );
+      if (!overlap) {
+        found = true;
+      } else {
+        x++;
+        if (x + widgetCols > maxCols) {
+          x = 0;
+          y++;
+          if (y + widgetRows > maxRows) {
+            // Expand grid
+            maxRows++;
+            this.options.maxRows = maxRows;
+            this.options.api?.optionsChanged?.();
+          }
+        }
+      }
+    }
     const newWidget: IWidget = {
       id: 'widget-' + Date.now(),
       reportId: this.filterState.getSelectedReport() || '',
@@ -191,8 +216,8 @@ export class Dashboard implements OnInit {
       title: this.getWidgetTitle(this.newWidgetType),
       cols: widgetCols,
       rows: widgetRows,
-      x: 0,
-      y: this.widgets.length,
+      x,
+      y,
       data: widgetData,
       minItemCols: widgetCols,
       maxItemCols: widgetCols,
