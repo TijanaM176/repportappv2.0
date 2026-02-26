@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
+
+import { Component, Input } from '@angular/core';
 import { PprsService } from '../service/pprs-service';
+import { CommonModule } from '@angular/common';
+import { ProductionPerStationData } from '../model/model';
 
 @Component({
   selector: 'app-table',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './table.html',
   styleUrls:  ['./table.css'] ,
 })
 export class Table {
-    constructor(private service:PprsService){}
+  constructor(private service:PprsService){}
+  @Input() data: ProductionPerStationData[] = [];
 
-    ngOnInit(): void {
-        const startTime = new Date('2024-01-01T00:00:00');
-        const endTime = new Date('2024-01-31T23:59:59');
-        const project = 'BR223_MC';
-        this.service.getDataPPSR(startTime, endTime, project).subscribe(data => {
-            console.log(data);
-        });
-    }
 }

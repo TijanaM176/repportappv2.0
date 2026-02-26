@@ -1,1 +1,24 @@
-<p>table works!</p>
+<div class="table-scroll-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Station Name</th>
+        <th>Status</th>
+        <th>Part Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td>{{ row.project }}</td>
+        <td>{{ row.stationName }}</td>
+        <td>
+          <span *ngIf="row.partStatus === 'OK'">OK</span>
+          <span *ngIf="row.partStatus === 'NOK'">NOK</span>
+          <span *ngIf="row.partStatus === 'Rework'">Rework</span>
+        </td>
+        <td>{{ row.partCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

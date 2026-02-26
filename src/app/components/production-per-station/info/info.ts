@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-info',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './info.css',
 })
 export class Info {
-
+  @Input() okCount: number = 0;
+  @Input() nokCount: number = 0;
+  @Input() reworkCount: number = 0;
 }

@@ -7,13 +7,9 @@
         <option value="table">Table</option>
         <option value="chart">Chart</option>
         <option value="stats">Stats</option>
-      </select>
-    </label>
-    <label>Width (columns):
-      <select [(ngModel)]="newWidgetCols">
-        <option [value]="2">Small (2/4)</option>
-        <option [value]="3">Medium (3/4)</option>
-        <option [value]="4">Large (4/4)</option>
+        <option value="pps-chart">PPS Chart</option>
+        <option value="pps-table">PPS Table</option>
+        <option value="pps-info">PPS Info</option>
       </select>
     </label>
     <div class="modal-actions">
@@ -24,24 +20,26 @@
 </div>
 <div class="dashboard-layout" [style.margin-left]="sidebarMargin">
   <app-side-menu (sidebarStateChanged)="onSidebarStateChanged($event)"></app-side-menu>
-  
   <div class="dashboard-content">
-    
-
+    <div class="dashboard-header">
+      <h1>Dashboard</h1>
+      <button class="btn-add-widget" (click)="addWidget()">+ Add Widget</button>
+    </div>
     <div class="gridster-wrapper" *ngIf="widgets.length > 0">
       <gridster [options]="options">
         <gridster-item *ngFor="let widget of widgets" [item]="widget">
-          <div class="widget-container">
+          <div class="widget-container" >
             <button class="btn-widget-remove" (click)="removeWidget(widget)">✕</button>
-            
             <app-widget-table *ngIf="widget.type === 'table'" [widget]="widget"></app-widget-table>
             <app-widget-stats *ngIf="widget.type === 'stats'" [widget]="widget"></app-widget-stats>
             <app-widget-chart *ngIf="widget.type === 'chart'" [widget]="widget"></app-widget-chart>
+            <app-chart *ngIf="widget.type === 'pps-chart'" [chartData]="widget.data" style="height:100%;padding: 0;margin: 0;"></app-chart>
+            <app-table *ngIf="widget.type === 'pps-table'" [data]="widget.data"></app-table>
+            <app-info *ngIf="widget.type === 'pps-info'" [okCount]="widget.data?.okCount" [nokCount]="widget.data?.nokCount" [reworkCount]="widget.data?.reworkCount"></app-info>
           </div>
         </gridster-item>
       </gridster>
     </div>
-
     <div class="empty-state" *ngIf="widgets.length === 0">
       <div class="empty-icon">📊</div>
       <h2>No widgets selected</h2>

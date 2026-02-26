@@ -1,5 +1,5 @@
 // Widget Model
-export type WidgetType = 'table' | 'chart' | 'stats' | 'heatmap' | 'timeline';
+export type WidgetType = 'table' | 'chart' | 'stats' | 'heatmap' | 'timeline' | 'pps-chart' | 'pps-table' | 'pps-info';
 
 export interface IWidget {
   id: string;
@@ -11,6 +11,10 @@ export interface IWidget {
   x: number;
   y: number;
   data?: any;
+  minItemCols?: number;
+  maxItemCols?: number;
+  minItemRows?: number;
+  maxItemRows?: number;
 }
 
 export interface IWidgetData {
