@@ -1,0 +1,754 @@
+.sidebar-modern {
+  width: 64px;
+  background: white;
+  border-right: 1px solid var(--gray-200);
+  transition: width var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  overflow: visible;
+}
+
+.sidebar-modern.expanded {
+  width: 360px;
+}
+
+.sidebar-toggle-btn {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-toggle-btn:hover {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+}
+
+.sidebar-toggle-btn svg {
+  flex-shrink: 0;
+}
+
+.toggle-label {
+  white-space: nowrap;
+  letter-spacing: 0.025em;
+}
+
+.sidebar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: visible; /* Omogućava da dropdown izlazi van */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Filter Cards */
+.filter-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all var(--transition);
+  /* IMPORTANT: Omogućava da dropdown izlazi van card-a */
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.filter-card:hover {
+  background: white;
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-200);
+  z-index: 2; /* Podiže card kada je hover */
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.filter-icon {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.filter-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Action Group */
+.action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 2px solid var(--gray-200);
+}
+
+/* Modern Buttons */
+.btn-modern {
+  height: 44px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  letter-spacing: 0.01em;
+}
+
+.btn-modern svg {
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--gray-700);
+  border: 2px solid var(--gray-300);
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--secondary-50);
+  border-color: var(--secondary-500);
+  color: var(--secondary-700);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-modern:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Main Content */
+.content-modern {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  transition: all var(--transition-slow);
+}
+
+
+/* Modern Card */
+.modern-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: all var(--transition);
+}
+
+.modern-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Card Header */
+.card-header-modern {
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--primary-50), var(--accent-50));
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  user-select: none;
+}
+
+.card-header-modern:hover {
+  background: linear-gradient(135deg, var(--primary-100), var(--accent-100));
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  color: var(--gray-600);
+  transition: all var(--transition);
+}
+
+.icon-badge.active {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.badge-live {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--success);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+  animation: pulse-live 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-live {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gray-600);
+}
+
+.expand-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition);
+  color: var(--primary-500);
+}
+
+.chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.card-header-modern:hover .chevron {
+  background: var(--primary-500);
+  color: white;
+}
+
+/* Card Body */
+.card-body-modern {
+  padding: 24px;
+  animation: slideDown var(--transition-slow) ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reports Container */
+.reports-container-modern {
+  display: grid;
+  gap: 24px;
+}
+
+/* Dialog Styling */
+::ng-deep .reports-dialog .p-dialog {
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-xl) !important;
+  border: 1px solid var(--gray-200) !important;
+}
+
+::ng-deep .reports-dialog .p-dialog-header {
+  background: linear-gradient(135deg, var(--primary-50), var(--accent-50)) !important;
+  border-bottom: 1px solid var(--gray-200) !important;
+  padding: 20px 24px !important;
+  border-radius: 16px 16px 0 0 !important;
+}
+
+::ng-deep .reports-dialog .p-dialog-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: var(--gray-900) !important;
+}
+
+::ng-deep .reports-dialog .p-dialog-content {
+  padding: 24px !important;
+}
+
+::ng-deep .reports-dialog .p-dialog-footer {
+  background: var(--gray-50) !important;
+  border-top: 1px solid var(--gray-200) !important;
+  padding: 16px 24px !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+.dialog-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.report-toggle-item {
+  background: var(--gray-50);
+  border: 2px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 8px;
+  transition: all var(--transition);
+}
+
+.report-toggle-item:hover {
+  background: white;
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-sm);
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* PrimeNG Overrides - IMPORTANT CHANGES HERE */
+::ng-deep .custom-input .p-component {
+  width: 100%;
+  border: 2px solid var(--gray-200) !important;
+  border-radius: 8px !important;
+  transition: all var(--transition) !important;
+  background: white !important;
+  font-size: 0.9375rem !important;
+}
+
+::ng-deep .custom-input .p-component:hover {
+  border-color: var(--primary-300) !important;
+}
+
+::ng-deep .custom-input .p-component:focus,
+::ng-deep .custom-input .p-inputwrapper-focus .p-component {
+  border-color: var(--primary-500) !important;
+  box-shadow: 0 0 0 3px var(--primary-50) !important;
+  outline: none !important;
+}
+
+/* CRITICAL: Dropdown panels moraju biti appendTo="body" */
+::ng-deep .p-dropdown-panel,
+::ng-deep .p-cascadeselect-panel,
+::ng-deep .p-datepicker {
+  border-radius: 12px !important;
+  border: 1px solid var(--gray-200) !important;
+  box-shadow: var(--shadow-xl) !important;
+  margin-top: 4px !important;
+  z-index: 9999 !important;
+  background: white !important;
+  max-height: 400px !important;
+  overflow-y: auto !important;
+}
+
+/* KOMPAKTNIJA POLJA - Cascade Select */
+::ng-deep .p-cascadeselect-panel .p-cascadeselect-items {
+  min-width: 180px !important;
+  max-width: 220px !important;
+}
+
+::ng-deep .p-cascadeselect-panel .p-cascadeselect-sublist {
+  min-width: 180px !important;
+  max-width: 220px !important;
+}
+
+::ng-deep .p-dropdown-items {
+  min-width: 180px !important;
+}
+
+/* Kompaktniji item styling */
+::ng-deep .p-dropdown-item,
+::ng-deep .p-cascadeselect-item {
+  transition: all var(--transition) !important;
+  padding: 8px 12px !important;
+  cursor: pointer !important;
+  font-size: 0.875rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+::ng-deep .p-dropdown-item:hover,
+::ng-deep .p-cascadeselect-item:hover {
+  background: var(--primary-50) !important;
+  color: var(--primary-700) !important;
+}
+
+::ng-deep .p-cascadeselect-item-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+}
+
+::ng-deep .p-cascadeselect-item-text {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  flex: 1 !important;
+}
+
+::ng-deep .p-cascadeselect-group-icon {
+  color: var(--primary-500) !important;
+  font-size: 0.75rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* Calendar specific - kompaktnije */
+::ng-deep .p-datepicker {
+  min-width: 300px !important;
+}
+
+::ng-deep .p-datepicker table td {
+  padding: 3px !important;
+}
+
+::ng-deep .p-datepicker table td > span {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px !important;
+  font-size: 0.875rem !important;
+}
+
+::ng-deep .p-datepicker table td > span:hover {
+  background: var(--primary-50) !important;
+  color: var(--primary-700) !important;
+}
+
+::ng-deep .p-datepicker table td > span.p-highlight {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+  color: white !important;
+}
+
+/* Kompaktniji timepicker */
+::ng-deep .p-timepicker {
+  padding: 8px !important;
+}
+
+::ng-deep .p-timepicker button {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+::ng-deep .p-hour-picker,
+::ng-deep .p-minute-picker {
+  font-size: 0.875rem !important;
+}
+
+/* Select Button - kompaktnije */
+::ng-deep .p-selectbutton .p-button {
+  background: white !important;
+  border: 2px solid var(--gray-300) !important;
+  color: var(--gray-700) !important;
+  font-weight: 600 !important;
+  transition: all var(--transition) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 0.875rem !important;
+}
+
+::ng-deep .p-selectbutton .p-button:hover {
+  background: var(--primary-50) !important;
+  border-color: var(--primary-400) !important;
+  color: var(--primary-700) !important;
+}
+
+::ng-deep .p-selectbutton .p-button.p-highlight {
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-600)) !important;
+  border-color: var(--primary-600) !important;
+  color: white !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Scrollbar */
+.sidebar-scroll::-webkit-scrollbar,
+.content-modern::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track,
+.content-modern::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb,
+.content-modern::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover,
+.content-modern::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Scrollbar for dropdowns */
+::ng-deep .p-dropdown-panel::-webkit-scrollbar,
+::ng-deep .p-cascadeselect-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+::ng-deep .p-dropdown-panel::-webkit-scrollbar-thumb,
+::ng-deep .p-cascadeselect-panel::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 3px;
+}
+
+::ng-deep .p-dropdown-panel::-webkit-scrollbar-thumb:hover,
+::ng-deep .p-cascadeselect-panel::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar-modern.expanded {
+    width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reports-wrapper {
+    flex-direction: column;
+  }
+  
+  .sidebar-modern {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .sidebar-modern.expanded {
+    width: 100%;
+  }
+  
+  .content-modern {
+    padding: 16px;
+  }
+  
+  .dialog-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-header-modern {
+    padding: 16px;
+  }
+  
+  .card-body-modern {
+    padding: 16px;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+  }
+  
+  .expand-text {
+    display: none;
+  }
+}
+/* Dropdown panel */
+::ng-deep .p-select-overlay {
+  border-radius: 12px !important;
+  border: 1px solid var(--gray-200) !important;
+  box-shadow: var(--shadow-xl) !important;
+  margin-top: 4px !important;
+  z-index: 9999 !important;
+  max-height: 400px !important;
+  overflow-y: auto !important;
+}
+
+/* Grupa header (CS, ASSY, CT) */
+::ng-deep .p-select-option-group {
+  background: linear-gradient(135deg, var(--primary-50), var(--accent-50)) !important;
+  color: var(--primary-700) !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+  padding: 10px 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 2px solid var(--primary-200) !important;
+  margin-top: 4px !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1 !important;
+}
+
+::ng-deep .p-select-option-group:first-child {
+  margin-top: 0 !important;
+}
+
+/* Stavke u grupi (projekti) */
+::ng-deep .p-select-option {
+  padding: 10px 12px 10px 24px !important;
+  cursor: pointer !important;
+  font-size: 0.9375rem !important;
+  transition: all var(--transition) !important;
+  color: var(--gray-700) !important;
+  border-left: 3px solid transparent !important;
+}
+
+::ng-deep .p-select-option:hover {
+  background: var(--primary-50) !important;
+  color: var(--primary-700) !important;
+  border-left-color: var(--primary-500) !important;
+  padding-left: 28px !important;
+}
+
+::ng-deep .p-select-option.p-focus {
+  background: var(--primary-100) !important;
+  color: var(--primary-800) !important;
+  border-left-color: var(--primary-600) !important;
+}
+
+::ng-deep .p-select-option.p-select-option-selected {
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-600)) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-left-color: var(--accent-500) !important;
+}
+
+/* Filter input */
+::ng-deep .p-select-filter-container {
+  padding: 12px !important;
+  border-bottom: 2px solid var(--gray-200) !important;
+  background: var(--gray-50) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 2 !important;
+}
+
+::ng-deep .p-select-filter {
+  width: 100% !important;
+  padding: 8px 12px !important;
+  border: 2px solid var(--gray-300) !important;
+  border-radius: 8px !important;
+  font-size: 0.9375rem !important;
+}
+
+::ng-deep .p-select-filter:focus {
+  border-color: var(--primary-500) !important;
+  box-shadow: 0 0 0 3px var(--primary-50) !important;
+  outline: none !important;
+}
+
+/* Scrollbar za dropdown */
+::ng-deep .p-select-overlay::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+::ng-deep .p-select-overlay::-webkit-scrollbar-track {
+  background: var(--gray-100) !important;
+  border-radius: 3px !important;
+}
+
+::ng-deep .p-select-overlay::-webkit-scrollbar-thumb {
+  background: var(--gray-300) !important;
+  border-radius: 3px !important;
+}
+
+::ng-deep .p-select-overlay::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-400) !important;
+}
+
+/* Select input field */
+::ng-deep .p-select {
+  width: 100% !important;
+  border: 2px solid var(--gray-200) !important;
+  border-radius: 8px !important;
+  transition: all var(--transition) !important;
+}
+
+::ng-deep .p-select:hover {
+  border-color: var(--primary-300) !important;
+}
+
+::ng-deep .p-select.p-focus {
+  border-color: var(--primary-500) !important;
+  box-shadow: 0 0 0 3px var(--primary-50) !important;
+}
+
+::ng-deep .p-select .p-select-label {
+  padding: 10px 12px !important;
+  font-size: 0.9375rem !important;
+}
+.p-cascadeselect-panel {
+  max-height: 400px !important;
+  
+  .p-cascadeselect-sublist {
+    max-height: 400px !important;
+    overflow-y: auto !important;
+  }
+}

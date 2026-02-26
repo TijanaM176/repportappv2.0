@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
-import { ScrapReportComponent } from './report-page/scrap-report/scrap-report';
+import { LoginComponent } from './login/login';
+import { Dashboard } from './dashboard/dashboard';
 import { ReportPage } from './report-page/report-page';
 
 export const routes: Routes = [
+    {path:'login',component:LoginComponent},
+    {path:'dashboard',component:Dashboard},
     {path:'report-page',component:ReportPage},
-    {path:'',redirectTo:'report-page',pathMatch:'full'}
+    {path:'',redirectTo:'dashboard',pathMatch:'full'}
 
 ];

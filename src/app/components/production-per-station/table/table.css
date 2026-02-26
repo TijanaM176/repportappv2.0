@@ -1,0 +1,61 @@
+/* Make table content scrollable inside grid cell */
+.table-scroll-wrapper {
+	width: 100%;
+	flex: 1 1 0;
+	min-height: 0;
+	height: 20%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.table-scroll-wrapper {
+	width: 100%;
+	flex: 1 1 0;
+	min-height: 0;
+	height: 20%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9vw;
+	min-width: 320px;
+	max-width: 100%;
+}
+th, td {
+	padding: 0.5vw 0.7vw;
+	text-align: left;
+	border-bottom: 1px solid #e2e8f0;
+	word-break: break-word;
+}
+thead {
+	background: #f0fdfa;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+tr:hover {
+	background: #f8fafc;
+}
+@media (max-width: 900px) {
+	table {
+		font-size: 1.2vw;
+	}
+	th, td {
+		padding: 0.7vw 1vw;
+	}
+}
+@media (max-width: 600px) {
+	table {
+		font-size: 2.5vw;
+	}
+	th, td {
+		padding: 1vw 2vw;
+	}
+}
+	
+

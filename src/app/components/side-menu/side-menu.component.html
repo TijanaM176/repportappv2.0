@@ -1,0 +1,89 @@
+<aside class="sidebar-modern" [class.expanded]="sidebarOpen">
+    <button class="sidebar-toggle-btn" (click)="toggleSidebar()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <span class="toggle-label" *ngIf="sidebarOpen">Filters</span>
+    </button>
+    
+    <div class="sidebar-scroll" *ngIf="sidebarOpen">
+      
+   <div class="filter-card">
+      <div class="filter-header">
+        <label class="filter-label">Production Line</label>
+      </div>
+      <p-cascadeSelect
+        [options]="groupedLines"
+        optionLabel="name"
+        optionGroupLabel="name"
+        [optionGroupChildren]="['children']"
+        (onChange)="onProductionLineChange($event)"
+        placeholder="Select Production Line"
+        appendTo="body"
+        styleClass="custom-input">
+      </p-cascadeSelect>
+    </div>
+
+      <div class="filter-card">
+        <div class="filter-header">
+          <label class="filter-label">Time Range</label>
+        </div>
+        <p-select 
+          [options]="timeDropDown" 
+          [(ngModel)]="selectedTime" 
+          optionLabel="title"
+          (onChange)="onTimeChange()"
+          styleClass="custom-input"
+          appendTo="body"
+        ></p-select>
+      </div>
+
+      <div class="filter-card">
+        <div class="filter-header">
+          <label class="filter-label">Start Date & Time</label>
+        </div>
+        <p-datepicker
+          inputId="calendar-24h-1"
+          [(ngModel)]="datetime24h1"
+          [showTime]="true"
+          [hourFormat]="'24'"
+          placeholder="Select start"
+          [disabled]="!isSelected"
+          dateFormat="yy-m-d"
+          styleClass="custom-input"
+          appendTo="body"
+        ></p-datepicker>
+      </div>
+
+      <div class="filter-card">
+        <div class="filter-header">
+          <label class="filter-label">End Date & Time</label>
+        </div>
+        <p-datepicker
+          inputId="calendar-24h-2"
+          [(ngModel)]="datetime24h2"
+          [showTime]="true"
+          [hourFormat]="'24'"
+          placeholder="Select end"
+          [disabled]="!isSelected"
+          dateFormat="yy-m-d"
+          styleClass="custom-input"
+          appendTo="body"
+        ></p-datepicker>
+      </div>
+
+      <div class="action-group">
+        
+
+        <button class="btn-modern btn-primary" (click)="getData()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          <span>Get Data</span>
+        </button>
+      </div>
+
+    </div>
+  </aside>
